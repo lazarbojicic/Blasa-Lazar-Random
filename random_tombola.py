@@ -29,11 +29,14 @@ def get_jump_list():
     return(len(stari_skok_list))
 '''
 
-def lognormalna():
+def lognormalna(stari_skok=stari_skok,stari_broj=dosada_zarazeni[-1]):
 
-    m=1.2
+    m=1.20
     s=0.05
     sln=np.sqrt(np.log(1+(s/m)**2))
     mln=np.log(m)-1/2*sln**2
     novi_skok=math.ceil(stari_skok*np.random.lognormal(mln,sln))
-    print(dosada_zarazeni[-1]+novi_skok)
+    print(stari_broj+novi_skok)
+if __name__ == "__main__":
+    for num in np.arange(len(dosada_zarazeni)-1):
+        lognormalna(dosada_zarazeni[num+1]-dosada_zarazeni[num],dosada_zarazeni[num+1])
